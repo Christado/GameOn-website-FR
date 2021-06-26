@@ -52,12 +52,21 @@
       <div class="bground">
         <div class="content">
           <button class="close" type="button" aria-label="Fermer" title="Fermer cette fenêtre">X</button>
+          <div class="modalconfirm" id="modalconfirm">
+            <div class="modalConfHeader"> 
+              <div class="ConfTitle"> Confirmation</div>
+              <button data-close-button class="closeConf">&times;</button>
+            </div>
+                <div class="modalConfBoby">
+                Merci ! Votre réservation a été reçue.
+                </div>
+          </div>
           <div class="modal-body">
-            <form id="formulaire" name="reserve" action="index.html" method="get" onsubmit="return validate();"> 
+            <form id="formulaire" name="reserve" action="index.html" method="POST" onsubmit="close();"> 
               <div class="mainFormData">
                 <div class="formData">
                   <label for="first">Prénom</label>
-                  <input id="first" class="text-control" type="text" name="first" minlength="2"/>
+                  <input id="first" class="text-control" type="text" name="first"/>
                   <span class="errorFirstName"></span>
                 </div>              
                 <div class="formData">
@@ -130,6 +139,7 @@
                 </div>
               </div><br>
               <input class="btn-submit" type="submit" value="C'est parti"/>
+          
             </form>
           </div>
         </div>
@@ -141,6 +151,6 @@
     </footer>
 
     <script src="modal.js"></script>
-
+  <div class="active" id="overlay"></div>
   </body>
 </html>

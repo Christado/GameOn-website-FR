@@ -7,6 +7,14 @@ function editNav() {
   }
 }
 
+//retour formulaire
+
+  function refresh(){
+    location.reload();
+  }
+
+
+
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -15,7 +23,7 @@ const closeModal = document.querySelector(".close");
 const btnValidate = document.querySelector(".btn-submit");
 
 
-// DOM Elements Formulaire
+// DOM Elements Form
 const formModal = document.querySelector("#formulaire");
 const firstName = document.querySelector("#first");
 const lastName = document.querySelector("#last");
@@ -26,9 +34,9 @@ let checkboxes = document.querySelectorAll(".checkbox-input");
 let arrayCheckboxes = Array.from(checkboxes);
 const elementsForm = document.querySelectorAll("div.formData > input");
 const checkboxConditions = document.getElementById("checkbox1");
-
+const today = new Date().toISOString().split('T')[0];
 //Regex
-const regexName = /^[a-zA-Z-\s]+$/;
+const regexName = /^[a-zA-Z0-9._-]+$/;
 const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-_]+$/;
 const regexNombreTournois = /^[0-9]+$/;
 
@@ -50,9 +58,11 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal formulaire on click and after validation
+// close modal formulaire on click
 closeModal.addEventListener("click", (e)=>{
   modalbg.style.display = "none";
+
+
   for (i=0; i<errorMessagesAll.length; i++){
     errorMessagesAll[i].textContent = "";
   };
@@ -75,31 +85,66 @@ closeModal.addEventListener("click", (e)=>{
 // Validation elements Form
 formModal.addEventListener('submit', validate);
 
+// Date Exact
+
+
+birthdate.max = today
+
 //Verification de tous les éléments du formulaire 
 function validate(e){
   e.preventDefault();
-  if (firstName.value == ""){
-    errorMessageFirst.textContent = "Prénom manquant";
+  
+// validation du prénom
+  
+if(!firstName.value.trim())
+{
+  errorMessageFirst.textContent = "Prénom manquant";
+  errorMessageFirst.style.fontSize = "12px";
+  errorMessageFirst.style.color = "red";
+  firstName.value = "";
+    
+} else if(regexName.test(firstName.value) == false){
+    errorMessageFirst.textContent = "Format incorrect - Veuillez entrer 2 caractères ou plus pour ce champ";
     errorMessageFirst.style.fontSize = "12px";
     errorMessageFirst.style.color = "red";
-  } else if(regexName.test(firstName.value) == false){
-      errorMessageFirst.textContent = "Format incorrect - Veuillez entrer 2 caractères ou plus pour ce champ";
-      errorMessageFirst.style.fontSize = "12px";
-      errorMessageFirst.style.color = "red";
-  } else{
-      errorMessageFirst.textContent = "";
-  }
-  if (lastName.value == ""){
-    errorMessageLast.textContent = "Nom manquant";
+} 
+else if(firstName.value.length <2){
+  errorMessageFirst.textContent = "Veuillez entrer 2 caractères ou plus pour ce champ";
+  errorMessageFirst.style.fontSize = "12px";
+  errorMessageFirst.style.color = "red";
+  return false;
+}
+else{
+    errorMessageFirst.textContent = "";
+}
+  
+// validation du Nom
+
+if (!lastName.value.trim())
+{
+  errorMessageLast.textContent = "Nom manquant";
+  errorMessageLast.style.fontSize = "12px";
+  errorMessageLast.style.color = "red";
+  lastName.value = ""
+    
+} else if(regexName.test(lastName.value) == false){
+    errorMessageLast.textContent = "Format incorrect - Veuillez entrer 2 caractères ou plus pour ce champ";
     errorMessageLast.style.fontSize = "12px";
     errorMessageLast.style.color = "red";
-  } else if(regexName.test(lastName.value) == false){
-      errorMessageLast.textContent = "Format incorrect - Veuillez entrer 2 caractères ou plus pour ce champ";
-      errorMessageLast.style.fontSize = "12px";
-      errorMessageLast.style.color = "red";
-  } else{
-    errorMessageLast.textContent = "";
-  }
+} 
+else if(lastName.value.length <2){
+  errorMessageLast.textContent = "Veuillez entrer 2 caractères ou plus pour ce champ";
+  errorMessageLast.style.fontSize = "12px";
+  errorMessageLast.style.color = "red";
+  return false;
+}
+else{
+  errorMessageLast.textContent = "";
+}
+
+
+  // validation de l'email
+
   if (email.value == ""){
     errorMessageEmail.textContent = "Email manquant";
     errorMessageEmail.style.fontSize = "12px";
@@ -110,14 +155,22 @@ function validate(e){
       errorMessageEmail.style.color = "red";
   } else{
     errorMessageEmail.textContent = "";
+    
   }
+
+  // validation de la date de naissance 
+
   if (birthdate.value == ""){
     errorMessageBirthdate.textContent = "Date d'anniversaire manquante";
     errorMessageBirthdate.style.fontSize = "12px";
     errorMessageBirthdate.style.color = "red";
   } else{
     errorMessageBirthdate.textContent = "";
+    
   }
+
+  // validation nombre de jeux
+
   if (quantity.value == ""){
     errorMessageQuantity.textContent = "Nombre de tournois manquants";
     errorMessageQuantity.style.fontSize = "12px";
@@ -128,7 +181,11 @@ function validate(e){
       errorMessageQuantity.style.color = "red";
   } else{
     errorMessageQuantity.textContent = "";
+    
   }
+
+  // validation de la checkbox 
+
   if (arrayCheckboxes.some(check)){
     errorMessageSelection.textContent = "";
   } else {
@@ -144,22 +201,30 @@ function validate(e){
     errorMessageConditions.style.color = "red";
   }
   if (!firstName.value == "" && !regexName.test(firstName.value) == false && !lastName.value == "" &&!regexName.test(lastName.value) == false && !email.value == "" && !regexEmail.test(email.value) == false &&!birthdate.value == "" && !quantity.value == "" && !regexNombreTournois.test(quantity.value) == false &&arrayCheckboxes.some(check)&&checkboxConditions.checked){
+     
+   
 
     let contentForm = document.querySelector(".mainFormData");
 
     contentForm.textContent = "Merci ! Votre réservation a été reçue.";
-
+    
     btnValidate.value = "Fermer";
 
     btnValidate.addEventListener("click",e =>{
-      modalbg.style.display = "none";
-    });
+     refresh() ;
+
+      
+    }); 
+    
 
   }
   
+  
 }
 
-//Boucle pour vérification et fermeture de chaques checkboxes
+
+
+//Boucle pour vérification de chaques checkboxes
 function check(){
   for (let i=0; i<checkboxes.length; i++){
     if (checkboxes[i].checked == true){
@@ -167,3 +232,25 @@ function check(){
     }
   }
 }
+
+
+
+
+/*
+test boucle vérification de tous les éléments du formulaire
+let elementsForm = document.querySelectorAll("div.formData > input");
+let errorMessages = document.querySelectorAll("div.formData > span");
+
+formModal.addEventListener('submit', validate);
+
+function validate(e){
+  for (let i=0; i<elementsForm.length;i++){
+    if (elementsForm[i].value == true){
+      return true;
+    }else{
+      e.preventDefault();
+      errorMessages.textContent = "KO";
+    }
+  }
+}
+*/
