@@ -35,8 +35,8 @@ let arrayCheckboxes = Array.from(checkboxes);
 const elementsForm = document.querySelectorAll("div.formData > input");
 const checkboxConditions = document.getElementById("checkbox1");
 const today = new Date().toISOString().split('T')[0];
+
 //Regex
-const regexName = /^[a-zA-Z0-9._-]+$/;
 const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-_]+$/;
 const regexNombreTournois = /^[0-9]+$/;
 
@@ -61,7 +61,7 @@ function launchModal() {
 // close modal formulaire on click
 closeModal.addEventListener("click", (e)=>{
   modalbg.style.display = "none";
-
+  refresh();
 
   for (i=0; i<errorMessagesAll.length; i++){
     errorMessagesAll[i].textContent = "";
@@ -250,21 +250,4 @@ function check(){
 
 
 
-/*
-test boucle vérification de tous les éléments du formulaire
-let elementsForm = document.querySelectorAll("div.formData > input");
-let errorMessages = document.querySelectorAll("div.formData > span");
 
-formModal.addEventListener('submit', validate);
-
-function validate(e){
-  for (let i=0; i<elementsForm.length;i++){
-    if (elementsForm[i].value == true){
-      return true;
-    }else{
-      e.preventDefault();
-      errorMessages.textContent = "KO";
-    }
-  }
-}
-*/   
