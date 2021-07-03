@@ -13,8 +13,6 @@ function editNav() {
     location.reload();
   }
 
-
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -86,8 +84,6 @@ closeModal.addEventListener("click", (e)=>{
 formModal.addEventListener('submit', validate);
 
 // Date Exact 
-
-
 birthdate.max = today;
 
 // validation de l'Email
@@ -106,8 +102,7 @@ function validateEmail() {
       return false;
   }
    else{
-    errorMessageEmail.textContent = "";
-    
+    errorMessageEmail.textContent = ""; 
   }
 return true;
 }
@@ -171,6 +166,7 @@ function validateBirthdate(){
   }
   return true;
 }
+
 // validation du nombre de tournois
 function validateQuantity(){
 
