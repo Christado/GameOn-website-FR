@@ -85,28 +85,65 @@ closeModal.addEventListener("click", (e)=>{
 // Validation elements Form
 formModal.addEventListener('submit', validate);
 
-// Date Exact
+// Date Exact 
 
 
-birthdate.max = today
+birthdate.max = today;
 
-//Verification de tous les éléments du formulaire 
-function validate(e){
-  e.preventDefault();
-  
+// validation de l'Email
+
+function validateEmail() {
+  if (email.value == ""){
+    errorMessageEmail.textContent = "Email manquant";
+    errorMessageEmail.style.fontSize = "12px";
+    errorMessageEmail.style.color = "red";
+    return false;
+  } 
+  else if(regexEmail.test(email.value) == false){
+      errorMessageEmail.textContent = "Adresse e-mail invalide";
+      errorMessageEmail.style.fontSize = "12px";
+      errorMessageEmail.style.color = "red";
+      return false;
+  }
+   else{
+    errorMessageEmail.textContent = "";
+    
+  }
+return true;
+}
+
+// validation du Nom
+function validateLastname(){
+  if (!lastName.value.trim())
+  {
+    errorMessageLast.textContent = "Nom manquant";
+    errorMessageLast.style.fontSize = "12px";
+    errorMessageLast.style.color = "red";
+    
+    lastName.value = ""
+     return false; 
+  } 
+  else if(lastName.value.length <2){
+    errorMessageLast.textContent = "Veuillez entrer 2 caractères ou plus pour ce champ";
+    errorMessageLast.style.fontSize = "12px";
+    errorMessageLast.style.color = "red";
+    return false;
+  }
+  else{
+    errorMessageLast.textContent = "";
+  }
+  return true;
+}
 // validation du prénom
-  
-if(!firstName.value.trim())
+function validateFirstname(){
+  if(!firstName.value.trim())
 {
   errorMessageFirst.textContent = "Prénom manquant";
   errorMessageFirst.style.fontSize = "12px";
   errorMessageFirst.style.color = "red";
   firstName.value = "";
-    
-} else if(regexName.test(firstName.value) == false){
-    errorMessageFirst.textContent = "Format incorrect - Veuillez entrer 2 caractères ou plus pour ce champ";
-    errorMessageFirst.style.fontSize = "12px";
-    errorMessageFirst.style.color = "red";
+  return false;  
+
 } 
 else if(firstName.value.length <2){
   errorMessageFirst.textContent = "Veuillez entrer 2 caractères ou plus pour ce champ";
@@ -117,93 +154,76 @@ else if(firstName.value.length <2){
 else{
     errorMessageFirst.textContent = "";
 }
-  
-// validation du Nom
+return true;
 
-if (!lastName.value.trim())
-{
-  errorMessageLast.textContent = "Nom manquant";
-  errorMessageLast.style.fontSize = "12px";
-  errorMessageLast.style.color = "red";
-  lastName.value = ""
-    
-} else if(regexName.test(lastName.value) == false){
-    errorMessageLast.textContent = "Format incorrect - Veuillez entrer 2 caractères ou plus pour ce champ";
-    errorMessageLast.style.fontSize = "12px";
-    errorMessageLast.style.color = "red";
-} 
-else if(lastName.value.length <2){
-  errorMessageLast.textContent = "Veuillez entrer 2 caractères ou plus pour ce champ";
-  errorMessageLast.style.fontSize = "12px";
-  errorMessageLast.style.color = "red";
-  return false;
 }
-else{
-  errorMessageLast.textContent = "";
-}
-
-
-  // validation de l'email
-
-  if (email.value == ""){
-    errorMessageEmail.textContent = "Email manquant";
-    errorMessageEmail.style.fontSize = "12px";
-    errorMessageEmail.style.color = "red";
-  } else if(regexEmail.test(email.value) == false){
-      errorMessageEmail.textContent = "Adresse e-mail invalide";
-      errorMessageEmail.style.fontSize = "12px";
-      errorMessageEmail.style.color = "red";
-  } else{
-    errorMessageEmail.textContent = "";
-    
-  }
-
-  // validation de la date de naissance 
+// validation de la date d'anniv
+function validateBirthdate(){
 
   if (birthdate.value == ""){
     errorMessageBirthdate.textContent = "Date d'anniversaire manquante";
     errorMessageBirthdate.style.fontSize = "12px";
     errorMessageBirthdate.style.color = "red";
+    return false;
   } else{
     errorMessageBirthdate.textContent = "";
     
   }
-
-  // validation nombre de jeux
+  return true;
+}
+// validation du nombre de tournois
+function validateQuantity(){
 
   if (quantity.value == ""){
     errorMessageQuantity.textContent = "Nombre de tournois manquants";
     errorMessageQuantity.style.fontSize = "12px";
     errorMessageQuantity.style.color = "red";
+    return false;
   } else if(regexNombreTournois.test(quantity.value) == false){
       errorMessageQuantity.textContent = "format incorrect";
       errorMessageQuantity.style.fontSize = "12px";
       errorMessageQuantity.style.color = "red";
-  } else{
+      return false;
+  } 
+  else{
     errorMessageQuantity.textContent = "";
     
   }
+return true ;
+}
 
-  // validation de la checkbox 
+//Verification de tous les éléments du formulaire 
 
+function validate(e){
+  e.preventDefault();
+  const valideFirstname = validateFirstname();
+  const valideLastname = validateLastname();
+  const valideEmail = validateEmail();
+  const valideBirthdate = validateBirthdate();
+  const valideQuantity = validateQuantity();
+ 
+
+// validation de la checkbox 
   if (arrayCheckboxes.some(check)){
     errorMessageSelection.textContent = "";
+    
   } else {
     errorMessageSelection.textContent = "Veuillez choisir au moins une ville";
     errorMessageSelection.style.fontSize = "12px";
     errorMessageSelection.style.color = "red";
   }
+  
   if (checkboxConditions.checked){
     errorMessageConditions.textContent ="";
+    
   }else if (checkboxConditions.checked == false){
     errorMessageConditions.textContent = "Veuillez acceptez les termes et conditions";
     errorMessageConditions.style.fontSize = "12px";
-    errorMessageConditions.style.color = "red";
-  }
-  if (!firstName.value == "" && !regexName.test(firstName.value) == false && !lastName.value == "" &&!regexName.test(lastName.value) == false && !email.value == "" && !regexEmail.test(email.value) == false &&!birthdate.value == "" && !quantity.value == "" && !regexNombreTournois.test(quantity.value) == false &&arrayCheckboxes.some(check)&&checkboxConditions.checked){
-     
-   
+    errorMessageConditions.style.color = "red";  
+  };
 
+    if (valideFirstname && valideLastname && valideEmail && valideBirthdate && valideQuantity && arrayCheckboxes.some(check)&&checkboxConditions.checked){   
+   
     let contentForm = document.querySelector(".mainFormData");
 
     contentForm.textContent = "Merci ! Votre réservation a été reçue.";
@@ -211,28 +231,22 @@ else{
     btnValidate.value = "Fermer";
 
     btnValidate.addEventListener("click",e =>{
-     refresh() ;
-
-      
-    }); 
+     refresh() ; 
+    }) 
     
-
-  }
+  };
   
-  
-}
-
-
+};
 
 //Boucle pour vérification de chaques checkboxes
+
 function check(){
   for (let i=0; i<checkboxes.length; i++){
     if (checkboxes[i].checked == true){
       return true;
     }
   }
-}
-
+};
 
 
 
@@ -253,4 +267,4 @@ function validate(e){
     }
   }
 }
-*/
+*/   
