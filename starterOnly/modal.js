@@ -61,23 +61,7 @@ closeModal.addEventListener("click", (e)=>{
   modalbg.style.display = "none";
   refresh();
 
-  for (i=0; i<errorMessagesAll.length; i++){
-    errorMessagesAll[i].textContent = "";
-  };
-
-  for (i=0; i<elementsForm.length; i++){
-    if (elementsForm[i].value){
-      elementsForm[i].value = "";
-    };
-  }
-  for (i=0; i<arrayCheckboxes.length; i++){
-    if (arrayCheckboxes[i].checked){
-      arrayCheckboxes[i].checked = false;
-    }
-  }
-  if (checkboxConditions.checked){
-    checkboxConditions.checked = false;
-  }
+  
 });
 
 // Validation elements Form
