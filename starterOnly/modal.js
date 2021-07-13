@@ -35,7 +35,7 @@ const checkboxConditions = document.getElementById("checkbox1");
 const today = new Date().toISOString().split('T')[0];
 
 //Regex
-const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-_]+$/;
+const regexEmail = RegExp('^[a-zA-Z0-9.-_]{2,25}[@]{1}[a-zA-Z0-9-_]+[.]{1}[a-z]{2,10}$', 'g');
 const regexNombreTournois = /^[0-9]+$/;
 
 // DOM Elements error

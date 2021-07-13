@@ -1,22 +1,30 @@
-:root {
+html{
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 /* Landing Page */
 
 body {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /*background-image: url("background.png");*/
   font-family: var(--font-default);
   font-size: 18px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
+p {
+  margin-bottom: 0;
+  padding: 0.5vw;
+}
 
 img {
   padding-right: 1rem;
@@ -89,18 +97,22 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-  }
-  .header-logo{
-    width: 80%;
-  }
-  .header-logo > img{
-    width: 100%;
+    margin-top: -15px;
   }
 } 
 
 main {
+  font-size: 130%;
+  font-weight: bolder;
   color: black;
+  padding-top: 0.5vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin: 1px 20px 15px;
+  border-radius: 2rem;
   text-align: justify;
+
+
 }
 
 .modal-btn {
@@ -169,13 +181,12 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
-  display: flex;
-  flex-direction: column;
 }
 
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  height: auto;
 }
 
 label {
@@ -226,7 +237,7 @@ input[data-error]::after {
 .checkbox2-label {
   position: relative;
   margin-left: 36px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
 }
 .checkbox-label .checkbox-icon,
@@ -289,6 +300,11 @@ input[data-error]::after {
 
 .close {
   color: white;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
   background-color: transparent;
   border: none;
   font-size: large;
@@ -296,10 +312,11 @@ input[data-error]::after {
   align-self: flex-end;
   padding-right: 5%;
 }
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;
-  display: block; 
+  display: block;
   margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
@@ -307,10 +324,6 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
-  
-}
-.btn-submit:hover{
-  background-color: #3876ac;
 }
 /* custom select styles */
 .custom-select {
@@ -384,21 +397,22 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
+  min-height: 93vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
 }
 .hero-content {
-  display: flex;
-  flex-direction: column;
+  padding: 51px 67px;
   grid-column: span 4;
   background: #232323;
   color: #fff;
   position: relative;
   text-align: left;
-  padding-left: 5%;
+  min-width: 424px;
 }
 .hero-content::after {
   content: "";
@@ -414,14 +428,15 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
+  font-size: 6rem;
   font-weight: normal;
   white-space: nowrap;
-  font-size: 55px;
 }
 .hero-text {
-  width: 100%;
+  width: 146%;
   font-weight: normal;
-  font-size: 20px;
+  margin-top: 57px;
+  padding: 0;
 }
 .btn-signup {
   outline: none;
@@ -429,6 +444,7 @@ input[data-error]::after {
   font-size: 1.3rem;
   padding: 15px 23px;
   margin: 0;
+  margin-top: 59px;
 }
 .hero-img {
   grid-column: span 8;
@@ -462,8 +478,7 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    text-align: center;
-    padding: 2%;
+    padding: 20px;
   }
   .hero-content::after {
     content: unset;
@@ -472,13 +487,13 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 30px;
+    font-size: 4.5rem;
     white-space: normal;
   }
-  .hero-text{
-    font-size: 20px;
+  .hero-text {
+    width: unset;
+    font-size: 1.5rem;
   }
-  
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
@@ -492,64 +507,6 @@ footer {
     margin-top: 50px;
     text-align: center;
   }
-}
-
-/* Modal de confirmation */
-
-.modalconfirm {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  border-radius: 10px;
-  z-index:10 ;
-  background-color: white;
-  width: 500px;
-  max-width: 80%;
-}
-
-.modalconfirm.acttive {
-  transform: translate(-50%, -50%) scale(1); 
-}
-
-.modalConfHeader {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid ;
-}
-
-.modalConfHeader .ConfTitle {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modalConfHeader .closeConf {
-  cursor: pointer;
-  border: none;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modalConfBoby {
-  padding: 10px 15px;
-}
-
-#overlay {
-  position: fixed;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  pointer-events: none;
-}
-
-#overlay.active {
-  pointer-events: all;
-  opacity: 1;
 }
 
 @keyframes modalopen {
