@@ -1,4 +1,4 @@
-:root {
+html{
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
@@ -14,7 +14,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /*background-image: url("background.png");*/
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -186,6 +186,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  height: auto;
 }
 
 label {
@@ -236,7 +237,7 @@ input[data-error]::after {
 .checkbox2-label {
   position: relative;
   margin-left: 36px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
 }
 .checkbox-label .checkbox-icon,
@@ -269,14 +270,14 @@ input[data-error]::after {
   transition: 0.3s;
   opacity: 0;
 }
-.checkbox-input {
+.checkbox-input, .check-input{
   display: none;
 }
 .checkbox-input:checked + .checkbox-label .checkbox-icon::after,
-.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
+.check-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
 }
-.checkbox-input:checked + .checkbox2-label .checkbox-icon {
+.check-input:checked + .checkbox2-label .checkbox-icon {
   background: #279e7a;
 }
 .checkbox2-label .checkbox-icon {
@@ -296,31 +297,22 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
+
 .close {
+  color: white;
   position: absolute;
   right: 15px;
   top: 15px;
   width: 32px;
   height: 32px;
-  opacity: 1;
+  background-color: transparent;
+  border: none;
+  font-size: large;
   cursor: pointer;
-  transform: scale(0.7);
+  align-self: flex-end;
+  padding-right: 5%;
 }
-.close:before,
-.close:after {
-  position: absolute;
-  left: 15px;
-  content: " ";
-  height: 33px;
-  width: 3px;
-  background-color: #fff;
-}
-.close:before {
-  transform: rotate(45deg);
-}
-.close:after {
-  transform: rotate(-45deg);
-}
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;
