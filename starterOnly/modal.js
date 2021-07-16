@@ -207,7 +207,14 @@ function validate(e){
     let contentForm = document.querySelector(".mainFormData");
 
     contentForm.textContent = "Merci ! Votre réservation a été reçue.";
-    
+    contentForm.style.fontSize ="36px";
+    contentForm.style.padding ="7.9rem";
+    contentForm.style.paddingLeft ="3.5rem";
+    contentForm.style.paddingTop ="10rem";
+    contentForm.style.margin = "0px";
+    contentForm.style.height ="550px";
+    contentForm.style.width ="120%";
+
     btnValidate.value = "Fermer";
 
     btnValidate.addEventListener("click",e =>{
