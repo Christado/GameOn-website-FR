@@ -13,7 +13,7 @@ function editNav() {
     location.reload();
   }
 
-// DOM Elements//
+// DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -61,23 +61,7 @@ closeModal.addEventListener("click", (e)=>{
   modalbg.style.display = "none";
   refresh();
 
-  for (i=0; i<errorMessagesAll.length; i++){
-    errorMessagesAll[i].textContent = "";
-  };
-
-  for (i=0; i<elementsForm.length; i++){
-    if (elementsForm[i].value){
-      elementsForm[i].value = "";
-    };
-  }
-  for (i=0; i<arrayCheckboxes.length; i++){
-    if (arrayCheckboxes[i].checked){
-      arrayCheckboxes[i].checked = false;
-    }
-  }
-  if (checkboxConditions.checked){
-    checkboxConditions.checked = false;
-  }
+  
 });
 
 // Validation elements Form
@@ -223,7 +207,14 @@ function validate(e){
     let contentForm = document.querySelector(".mainFormData");
 
     contentForm.textContent = "Merci ! Votre réservation a été reçue.";
-    
+    contentForm.style.fontSize ="36px";
+    contentForm.style.padding ="7.9rem";
+    contentForm.style.paddingLeft ="3.5rem";
+    contentForm.style.paddingTop ="10rem";
+    contentForm.style.margin = "0px";
+    contentForm.style.height ="550px";
+    contentForm.style.width ="120%";
+
     btnValidate.value = "Fermer";
 
     btnValidate.addEventListener("click",e =>{
