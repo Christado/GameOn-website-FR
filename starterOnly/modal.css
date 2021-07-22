@@ -553,6 +553,16 @@ footer {
   }
 }
 
+@media screen and (min-width: 970px) and (max-width: 4000px) {
+  .hero-headline {
+    font-size: 6.1rem;
+    font-weight: normal;
+    white-space: nowrap;
+    margin-left: -11px;
+    margin-right: 25px;
+  }
+}
+
 @media screen and (width: 280px) {
   .hero-headline {
     font-size: 6rem;
