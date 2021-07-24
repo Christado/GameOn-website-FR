@@ -214,7 +214,7 @@ function validate(e){
     contentForm.style.margin = "0px";
     contentForm.style.height ="550px";
     contentForm.style.width ="120%";
-
+    contentForm.style.textAlign ="center";
     btnValidate.value = "Fermer";
 
     btnValidate.addEventListener("click",e =>{

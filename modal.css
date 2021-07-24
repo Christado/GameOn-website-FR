@@ -342,7 +342,7 @@ input[data-error]::after {
 .close {
   color: white;
   position: absolute;
-  right: 15px;
+  right: 0px;
   width: 32px;
   height: 32px;
   background-color: transparent;
